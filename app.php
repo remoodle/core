@@ -1,6 +1,7 @@
 <?php
 
 use App\Middleware\ErrorMiddleware;
+use App\Middleware\Cors;
 use Core\Config;
 use Dotenv\Dotenv;
 use Slim\Factory\AppFactory;
@@ -26,6 +27,7 @@ $capsule->setAsGlobal();
 /**@var Slim\App */
 $app = AppFactory::createFromContainer($container);
 $app->addBodyParsingMiddleware();
+$app->addMiddleware($app->getContainer()->get(Cors::class));
 $routes($app);
 // $app->addErrorMiddleware(true, true, true);
 $app->addMiddleware($app->getContainer()->get(ErrorMiddleware::class));
