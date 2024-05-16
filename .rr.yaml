@@ -86,6 +86,9 @@ kv:
     lemmetization:
         driver: memory
         config: {}
+    rate-limit-token:
+        driver: memory
+        config: {}
 service:
     kv_users_init:
         command: "php service/user_init.php"
