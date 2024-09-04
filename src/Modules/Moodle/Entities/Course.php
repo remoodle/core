@@ -16,7 +16,7 @@ class Course implements SearchableInterface
      * @param int $start_date
      * @param int $end_date
      * @param string $url
-     * @param bool $status
+     * @param string $status
      */
     public function __construct(
         public readonly int $course_id,
@@ -25,7 +25,7 @@ class Course implements SearchableInterface
         public readonly int $start_date,
         public readonly int $end_date,
         public readonly string $url,
-        public readonly bool $status
+        public readonly string $status
     ) {
     }
 
