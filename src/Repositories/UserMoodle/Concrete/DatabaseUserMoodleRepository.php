@@ -15,6 +15,8 @@ use App\Modules\Moodle\Entities\IntroAttachment;
 use App\Repositories\UserMoodle\DatabaseUserMoodleRepositoryInterface;
 use Illuminate\Database\Connection;
 
+use function PHPSTORM_META\type;
+
 class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterface
 {
     public function __construct(
@@ -43,8 +45,13 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
     /**
      * @inheritDoc
      */
-    public function getActiveCourses(int $moodleId, string $moodleToken): array
+    public function getActiveCourses(int $moodleId, string $type): array
     {
+        $status = $type === "active" ? 0 : 1;
+        if ($type === "all") {
+            $status = -1;
+        }
+
         return MoodleUser::query()
             ->with([
                 "courses" => function ($query) {
@@ -54,6 +61,7 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
             ->where("moodle_id", $moodleId)
             ->first()
             ?->courses
+            ->where("status", "!=", $status)
             ->map(function (Course $course) {
                 return new CourseEntity(
                     course_id: $course->course_id,
@@ -61,7 +69,8 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
                     coursecategory: $course->coursecategory,
                     start_date: $course->start_date,
                     end_date: $course->end_date,
-                    url: $course->url
+                    url: $course->url,
+                    status: $course->status === 1 ? true : false
                 );
             })
             ->all();

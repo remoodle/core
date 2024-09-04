@@ -28,6 +28,7 @@ final class CreateCourseTable extends AbstractMigration
             ->addColumn('url', 'string', ['null' => false])
             ->addColumn('start_date', 'integer', ['null' => true])
             ->addColumn('end_date', 'integer', ['null' => true])
+            ->addColumn('status', 'boolean', ['default' => true])
 
             ->addIndex(['coursecategory'], ['unique' => false])
             ->addIndex(['name'], ['unique' => false])

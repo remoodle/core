@@ -23,12 +23,13 @@ class UserCoursesController extends BaseController
     {
         /**@var \App\Models\MoodleUser */
         $user = $request->getAttribute("user");
+        $type = $request->getQueryParams()['type'] ?? "active";
 
         return $this->jsonResponse(
             response: $response,
             body: $this->userMoodleRepositoryFactory->create(
                 $user->initialized ? RepositoryTypes::DATABASE : RepositoryTypes::MOODLE_API
-            )->getActiveCourses($user->moodle_id, $user->moodle_token)
+            )->getActiveCourses($user->moodle_id, $type)
         );
     }
 
