@@ -46,7 +46,7 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
     /**
      * @inheritDoc
      */
-    public function getActiveCourses(int $moodleId, CourseEnrolledClassification | null $status): array
+    public function getActiveCourses(int $moodleId, string $moodleToken, ?CourseEnrolledClassification $status = null): array
     {
         $courses = MoodleUser::query()
         ->with([

@@ -12,10 +12,11 @@ interface UserMoodleRepositoryInterface
 {
     /**
      * @param int $moodleId
-     * @param CourseEnrolledClassification $status
+     * @param string $moodleToken
+     * @param ?CourseEnrolledClassification $status
      * @return \App\Modules\Moodle\Entities\Course[]
      */
-    public function getActiveCourses(int $moodleId, CourseEnrolledClassification $status): array;
+    public function getActiveCourses(int $moodleId, string $moodleToken, ?CourseEnrolledClassification $status = null): array;
 
     /**
      * @param int $moodleId
