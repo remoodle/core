@@ -99,13 +99,12 @@ class UserCoursesController extends BaseController
         $repository = $this->userMoodleRepositoryFactory->create(RepositoryTypes::MOODLE_API);
         return $this->jsonResponse(
             response: $response,
-            body: [
+            body:
                 $repository->getCourses(
                     $user->moodle_id,
                     $user->moodle_token,
                     CourseEnrolledClassification::INPROGRESS
                 ),
-            ]
         );
     }
 
