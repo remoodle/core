@@ -201,6 +201,10 @@ final class Moodle
             $courses[$event['course']['id']] = true;
         }
 
+        usort($events, callback: function($a, $b) {
+            return $a['timestart'] <=> $b['timestart'];
+        });
+
         if ($withAssignments) {
             $assignments = $this->getCoursesAssignments(...array_keys($courses));
             $assignmentsByCmid = [];

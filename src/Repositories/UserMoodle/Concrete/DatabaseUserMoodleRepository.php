@@ -133,7 +133,8 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
         return MoodleUser::query()
             ->with([
                 "events" => function ($query) {
-                    $query->where("timestart", ">", time());
+                    $query->where("timestart", ">", time())
+                        ->orderBy("timestart", "asc");
                 },
                 "events.assignment",
                 "events.assignment.relatedGrade" => function ($query) use ($moodleId) {
