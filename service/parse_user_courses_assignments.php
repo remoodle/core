@@ -24,15 +24,17 @@ $queue = $jobs->connect(JobsEnum::PARSE_COURSES->value);
 
 $users = MoodleUser::all();
 
-foreach($users as $user) {
+foreach ($users as $user) {
     // $task = $queue->create(Task::class, (new Payload($queue->getName(), $user)));
     // $queue->dispatch($task);
-    $queue->dispatch(
-        $queue->create(
-            name: Task::class,
-            payload: (new Payload(JobsEnum::PARSE_COURSES->value, $user))
-                ->add(new Payload(JobsEnum::PARSE_COURSE_CONTENTS->value, $user))
-                ->add(new Payload(JobsEnum::PARSE_ASSIGNMENTS->value, $user))
-        )
-    );
+    if ($user->initialized) {
+        $queue->dispatch(
+            $queue->create(
+                name: Task::class,
+                payload: (new Payload(JobsEnum::PARSE_COURSES->value, $user))
+                    ->add(new Payload(JobsEnum::PARSE_COURSE_CONTENTS->value, $user))
+                    ->add(new Payload(JobsEnum::PARSE_ASSIGNMENTS->value, $user))
+            )
+        );
+    }
 }

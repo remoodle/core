@@ -21,23 +21,16 @@ $capsule->setAsGlobal();
 $capsule->bootEloquent();
 
 $jobs = new Jobs(RPC::create(Config::get("rpc.connection")));
-$queueEvents = $jobs->connect(JobsEnum::PARSE_EVENTS->value);
-$queueGrades = $jobs->connect(JobsEnum::PARSE_GRADES->value);
+$queue = $jobs->connect(JobsEnum::SET_INITIALIZED->value);
 
 $users = MoodleUser::all();
 
 foreach ($users as $user) {
-    if ($user->initialized) {
-        $queueEvents->dispatch(
-            $queueEvents->create(
+    if (!$user->initialized) {
+        $queue->dispatch(
+            $queue->create(
                 name: Task::class,
-                payload: (new Payload(JobsEnum::PARSE_EVENTS->value, $user))
-            )
-        );
-        $queueGrades->dispatch(
-            $queueGrades->create(
-                name: Task::class,
-                payload: (new Payload(JobsEnum::PARSE_GRADES->value, $user))
+                payload: (new Payload(JobsEnum::SET_INITIALIZED->value, $user))
             )
         );
     }
