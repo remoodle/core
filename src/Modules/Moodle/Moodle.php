@@ -237,7 +237,7 @@ final class Moodle
                 allowsubmissionsfromdate: (int) $assignment['allowsubmissionsfromdate'],
                 duedate: (int) $assignment['duedate'],
                 grade: (int) $assignment['grade'],
-                intro: $assignment['intro'],
+                intro: $this->issetOrNullArray($assignment, 'intro'),
                 introformat: (int) $assignment['introformat'],
                 introattachments: array_map(function ($introattachment): IntroAttachment {
                     return new IntroAttachment(
@@ -290,7 +290,7 @@ final class Moodle
                     allowsubmissionsfromdate: (int) $assignment['allowsubmissionsfromdate'],
                     duedate: (int) $assignment['duedate'],
                     grade: (int) $assignment['grade'],
-                    intro: $assignment['intro'],
+                    intro: $this->issetOrNullArray($assignment, 'intro'),
                     introformat: (int) $assignment['introformat'],
                     introattachments: array_map(function ($introattachment): IntroAttachment {
                         return new IntroAttachment(
@@ -302,7 +302,7 @@ final class Moodle
                             mimetype: $introattachment['mimetype'],
                             isexternalfile: $introattachment['isexternalfile']
                         );
-                    }, $assignment['introattachments'])
+                    }, $assignment['introattachments'] ?? [])
                 );
             }
         }

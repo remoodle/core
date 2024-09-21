@@ -22,7 +22,7 @@ $capsule->bootEloquent();
 $jobs = new Jobs(RPC::create(Config::get("rpc.connection")));
 $queue = $jobs->connect(JobsEnum::PARSE_COURSES->value);
 
-$users = MoodleUser::all();
+$users = MoodleUser::where('initialized', true)->get();
 
 foreach ($users as $user) {
     // $task = $queue->create(Task::class, (new Payload($queue->getName(), $user)));

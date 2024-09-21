@@ -23,7 +23,7 @@ $capsule->bootEloquent();
 $jobs = new Jobs(RPC::create(Config::get("rpc.connection")));
 $queue = $jobs->connect(JobsEnum::SET_INITIALIZED->value);
 
-$users = MoodleUser::all();
+$users = MoodleUser::where('initialized', false)->get();
 
 foreach ($users as $user) {
     if (!$user->initialized) {

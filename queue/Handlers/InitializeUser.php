@@ -39,17 +39,11 @@ class InitializeUser extends BaseHandler
 
     protected function dispatch(): void
     {
-        echo "\STARTED\n";
         $this->parseUserCourses->__invoke();
-        echo "\nSTEP 1\n";
         $this->parserCourseContents->__invoke();
-        echo "\nSTEP 2\n";
         $this->parseUserGrades->__invoke();
-        echo "\nSTEP 3\n";
         $this->parseUserEvents->__invoke();
-        echo "\nSTEP 4\n";
         $this->parseUserAssignments->__invoke();
-        echo "\nSTEP 5\n";
 
         /**
          * @var \App\Models\MoodleUser
@@ -67,7 +61,7 @@ class InitializeUser extends BaseHandler
             ->factory
             ->select('users')
             ->set('m'.$user->moodle_id, $user->moodle_token);
-        echo "\nINIT SUCC\n";
+        echo "Initialization success for {$user->moodle_id}({$user->username})\n";
     }
 
 }

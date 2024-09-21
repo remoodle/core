@@ -24,7 +24,7 @@ $jobs = new Jobs(RPC::create(Config::get("rpc.connection")));
 $queueEvents = $jobs->connect(JobsEnum::PARSE_EVENTS->value);
 $queueGrades = $jobs->connect(JobsEnum::PARSE_GRADES->value);
 
-$users = MoodleUser::all();
+$users = MoodleUser::where('initialized', true)->get();
 
 foreach ($users as $user) {
     if ($user->initialized) {
