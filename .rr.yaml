@@ -39,32 +39,39 @@ logs:
     # Encoding format can be "console" or "json" (last is preferred for production usage).
     encoding: ${LOGS_ENCODING:-console}
 jobs:
-    num_pollers: ${JOBS_NUM_POLLERS:-8}
+    num_pollers: ${JOBS_NUM_POLLERS:-9}
     timeout: 60
     pool:
-        num_workers: ${JOBS_NUM_WORKERS:-4}
+        num_workers: ${JOBS_NUM_WORKERS:-8}
         max_worker_memory: 100
         command: "php dispatcher/dispatcher.php"
     pipelines:
         user_parse_events:
+            priority: 4
             driver: memory
             config: {}
         user_parse_courses:
+            priority: 2
             driver: memory
             config: {}
         user_parse_grades:
+            priority: 4
             driver: memory
             config: {}
         notification_webhook:
+            priority: 4
             driver: memory
             config: {}
         user_set_initialized:
+            priority: 1
             driver: memory
             config: {}
         user_parse_assignments:
+            priority: 3
             driver: memory
             config: {}
         user_parse_courses_contents:
+            priority: 3
             driver: memory
             config: {}
     consume:
