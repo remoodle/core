@@ -53,7 +53,14 @@ class ParseUserGrades
      */
     private function getCourseModulesAndGrades(int $courseId, Moodle $moodle): array
     {
-        $courseGrades = $moodle->getCourseGrades($courseId);
+        try {
+            $courseGrades = $moodle->getCourseGrades($courseId);
+        } catch (\Throwable $th) {
+            if (str_contains($th->getMessage(), 'error/notingroup')) {
+                return [[],[],[]];
+            }
+            throw $th;
+        }
         $courseGradesFiltered = [];
 
         $courseModulesUpsertArray = [];
