@@ -121,15 +121,15 @@ final class Moodle
         }
         $courses = [];
 
-        foreach ($coursesRaw as $course) {
+        foreach ($coursesRaw as $cours) {
             $courses[] = new Course(
-                course_id: (int)$course["id"],
-                url: $course["viewurl"],
-                coursecategory: $course["coursecategory"],
-                name: $course["fullname"] ?? $course["shortname"],
-                end_date: $course["startdate"],
-                start_date: $course["enddate"],
-                status: $course['classification'],
+                course_id: (int)$cours["id"],
+                url: $cours["viewurl"],
+                coursecategory: $cours["coursecategory"],
+                name: $cours["fullname"] ?? $cours["shortname"],
+                end_date: $cours["startdate"],
+                start_date: $cours["enddate"],
+                status: $cours['classification'],
             );
         }
 
