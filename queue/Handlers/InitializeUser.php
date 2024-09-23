@@ -6,6 +6,7 @@ namespace Queue\Handlers;
 
 use App\Modules\Search\SearchEngineInterface;
 use App\Repositories\UserMoodle\DatabaseUserMoodleRepositoryInterface;
+use Core\Config;
 use Illuminate\Database\Connection;
 use Queue\Actions\ParseCourseContents;
 use Queue\Actions\ParseUserAssignments;
@@ -29,10 +30,11 @@ class InitializeUser extends BaseHandler
         $connection = $this->get(Connection::class);
         $user = $this->getPayload()->payload();
         $searchEngine = $this->get(SearchEngineInterface::class);
+        $moodleWebservicesUrl = Config::get("moodle.webservice_url");
 
         $this->parseUserCourses = new ParseUserCourses($connection, $searchEngine, $user);
         $this->parserCourseContents = new ParseCourseContents($user, $connection);
-        $this->parseUserGrades = new ParseUserGrades($connection, $user);
+        $this->parseUserGrades = new ParseUserGrades($connection, $user, $moodleWebservicesUrl);
         $this->parseUserEvents = new ParseUserEvents($connection, $searchEngine, $user);
         $this->parseUserAssignments = new ParseUserAssignments($user, $connection, $searchEngine);
     }

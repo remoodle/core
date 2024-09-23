@@ -74,6 +74,10 @@ jobs:
             priority: 3
             driver: memory
             config: {}
+        user_parse_batch_events:
+            priority: 4
+            driver: memory
+            config: {}
     consume:
         [
             "user_parse_courses_contents",
@@ -82,7 +86,8 @@ jobs:
             "user_parse_grades",
             "notification_webhook",
             "user_set_initialized",
-            'user_parse_assignments'
+            'user_parse_assignments',
+            'user_parse_batch_events'
         ]
 
 kv: 

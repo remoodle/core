@@ -37,7 +37,5 @@ class ParseUserEvents
             $this->connection->rollBack();
             throw $th;
         }
-
-        // $this->searchEngine->putMany($userApiEvents);
     }
 }
