@@ -45,6 +45,14 @@ final class GetGradesBatch
                     }
                 }
                 foreach ($rawGrades["usergrades"][0]['gradeitems'] as $gradeitem) {
+                    if ($gradeitem['itemtype'] === 'category') {
+                        continue;
+                    }
+
+                    if ($gradeitem['itemtype'] === 'course' && ($grades['cmid'] ?? null) === null) {
+                        $gradeitem['itemname'] = 'Total';
+                    }
+
                     $gradeitem['percentageformatted'] = str_replace([' ', '%'], '', $gradeitem['percentageformatted']);
                     $grade = is_numeric($gradeitem['percentageformatted'])
                         ? (int) $gradeitem['percentageformatted']
