@@ -137,10 +137,10 @@ class DatabaseUserMoodleRepository implements DatabaseUserMoodleRepositoryInterf
                 },
                 "events.assignment",
                 "events.assignment.relatedGrade" => function ($query) use ($moodleId) {
-                    $query->where("moodle_id", $moodleId)->limit(1);
+                    $query->where("moodle_id", $moodleId);
                 },
                 'events.assignment.submission' => function ($query) use ($moodleId) {
-                    $query->where('moodle_id', $moodleId)->limit(1);
+                    $query->where('moodle_id', $moodleId);
                 }
             ])
             ->where("moodle_id", $moodleId)
