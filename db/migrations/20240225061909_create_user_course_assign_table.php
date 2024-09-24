@@ -28,7 +28,7 @@ final class CreateUserCourseAssignTable extends AbstractMigration
 
             ->addForeignKey('moodle_id', 'moodle_users', 'moodle_id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
             ->addForeignKey('course_id', 'courses', 'course_id', ['delete' => 'CASCADE', 'update' => 'CASCADE'])
-
+            
             ->addIndex(['course_id'], ['unique' => false])
             ->addIndex(['moodle_id'], ['unique' => false])
             ->addIndex(['classification'], ['unique' => false])

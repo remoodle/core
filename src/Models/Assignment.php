@@ -101,7 +101,13 @@ class Assignment extends ModelAbstract
                 ->all(),
             intro: $this->intro,
             introformat: $this->introformat,
-            gradeEntity: $this->relatedGrade?->toEntity()
+            gradeEntity: $this->relatedGrade?->toEntity(),
+            submissionEntity: $this->relationLoaded('submission') ? $this->submission->toEntity() : null
         );
+    }
+
+    public function submission(): HasOne
+    {
+        return $this->hasOne(UserAssignmentSubmission::class, 'assignment_id', 'assignment_id');
     }
 }
