@@ -87,18 +87,19 @@ class UserCoursesController extends BaseController
         /**@var \App\Models\MoodleUser */
         $user = $request->getAttribute("user");
 
-        $isOnline = isset($request->getQueryParams()['isOnline'])
-            ? (bool) $request->getQueryParams()['isOnline']
-            : false;
+        $online = isset($request->getQueryParams()['online'])
+            ? (bool) $request->getQueryParams()['online']
+            : false
+        ;
 
-        if (!$user->initialized) {
+        if (!$user->initialized && !$online) {
             throw new \Exception('Can\'t get data from database', 503);
         }
 
         return $this->jsonResponse(
             response: $response,
             body: $this->userMoodleRepositoryFactory->create(
-                $user->initialized ? RepositoryTypes::DATABASE : RepositoryTypes::MOODLE_API
+                $user->initialized && !$online ? RepositoryTypes::DATABASE : RepositoryTypes::MOODLE_API
             )->getDeadlines(
                 moodleId: $user->moodle_id,
                 moodleToken: $user->moodle_token,
