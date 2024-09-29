@@ -87,6 +87,14 @@ class UserCoursesController extends BaseController
         /**@var \App\Models\MoodleUser */
         $user = $request->getAttribute("user");
 
+        $isOnline = isset($request->getQueryParams()['isOnline'])
+            ? (bool) $request->getQueryParams()['isOnline']
+            : false;
+
+        if (!$user->initialized) {
+            throw new \Exception('Can\'t get data from database', 503);
+        }
+
         return $this->jsonResponse(
             response: $response,
             body: $this->userMoodleRepositoryFactory->create(
