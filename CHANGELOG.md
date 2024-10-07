@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.3.1](https://github.com/remoodle/core/compare/v1.3.0...v1.3.1) (2024-10-07)
+
+
+### Miscellaneous Chores
+
+* add metrics from separate repo ([064d946](https://github.com/remoodle/core/commit/064d946df21dce1bb30a194ebf1b7ab3f9606bdc))
+* change mysql expose port ([30c66f0](https://github.com/remoodle/core/commit/30c66f0efeb03e3b319788a4dac3b772a07766df))
+* **docker:** expose 3306 to the localhost ([50140e4](https://github.com/remoodle/core/commit/50140e454d437f7084176f696ce7c36c7c180c20))
+
 ## [1.3.0](https://github.com/remoodle/core/compare/v1.2.4...v1.3.0) (2024-10-05)
 
 
