@@ -1,5 +1,31 @@
 # Changelog
 
+## [1.4.0](https://github.com/remoodle/core/compare/v1.3.0...v1.4.0) (2025-01-23)
+
+
+### Features
+
+* add metrics for queue stats ([013976d](https://github.com/remoodle/core/commit/013976d828442fa976c3175d5e3c90d8509897f5))
+* submitted ([8120670](https://github.com/remoodle/core/commit/812067019ff32de1ce78e7f5b1e21955e102c410))
+
+
+### Bug Fixes
+
+* delete dead code ([#278](https://github.com/remoodle/core/issues/278)) ([44fd954](https://github.com/remoodle/core/commit/44fd954c33c5863731dee1c056db2924e9ac5c88))
+* fix ([#300](https://github.com/remoodle/core/issues/300)) ([d02ae9b](https://github.com/remoodle/core/commit/d02ae9b3d1686e8e1f7dbd78a142d564ed9e92db))
+* format grades in parse step ([#254](https://github.com/remoodle/core/issues/254)) ([ebef34e](https://github.com/remoodle/core/commit/ebef34e799c60ed43496f6972f895b5f2598a49e))
+* kal ([#285](https://github.com/remoodle/core/issues/285)) ([a66845c](https://github.com/remoodle/core/commit/a66845c79a7457646dc3bb7346cb534dfe5b415e))
+* metrics declaration ([#279](https://github.com/remoodle/core/issues/279)) ([383588f](https://github.com/remoodle/core/commit/383588fb1a1cabc41d4ee9df2dfe7f47eedfd466))
+* Газок для course_groups.description ([#275](https://github.com/remoodle/core/issues/275)) ([a158753](https://github.com/remoodle/core/commit/a158753656b311ec299158479260d3867c5a3fc7))
+
+
+### Miscellaneous Chores
+
+* add metrics from separate repo ([064d946](https://github.com/remoodle/core/commit/064d946df21dce1bb30a194ebf1b7ab3f9606bdc))
+* change mysql expose port ([30c66f0](https://github.com/remoodle/core/commit/30c66f0efeb03e3b319788a4dac3b772a07766df))
+* **docker:** expose 3306 to the localhost ([50140e4](https://github.com/remoodle/core/commit/50140e454d437f7084176f696ce7c36c7c180c20))
+* trigger actions ([b4c6fc1](https://github.com/remoodle/core/commit/b4c6fc132c53fc0b9ca8d2bfada4a86935899315))
+
 ## [1.3.0](https://github.com/remoodle/core/compare/v1.2.4...v1.3.0) (2024-10-05)
 
 
